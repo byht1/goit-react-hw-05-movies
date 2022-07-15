@@ -1,21 +1,21 @@
+import { Container } from 'App.styled';
+import React, { useState, useEffect } from 'react';
 import Server from 'server/api';
+import MovieList from './components/MovieList/MovieList';
 
 const API = new Server();
+// console.log(API.serverHitsList());
+// console.log(API.serverSearch());
+// console.log(API.serverMovie());
+// console.log(API.serverActors());
+// console.log(API.serverResponse());
 
 export const App = () => {
-  console.log(API.serverData());
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      React homework template
-    </div>
+    <section>
+      <Container>
+        <MovieList />
+      </Container>
+    </section>
   );
 };
