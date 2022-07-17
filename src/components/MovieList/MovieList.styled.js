@@ -31,8 +31,15 @@ export const TextBox = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const Rating = styled.p`
-  border: 1px solid red;
+  padding: 3px;
+  border: 2px solid;
+  border-radius: 50%;
+  border-color: ${props => props.r >= 7.5 && 'green'};
+  border-color: ${props => props.r < 7.5 && props.r >= 5.1 && 'orange'};
+  border-color: ${props => props.r <= 5 && 'red'};
+  border-color: ${props => props.r === 0 && '#fff'};
 `;

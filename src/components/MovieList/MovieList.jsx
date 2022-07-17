@@ -6,6 +6,7 @@ import {
   ElementsBox,
   TextBox,
   Title,
+  Rating,
 } from './MovieList.styled';
 
 const API = new Server();
@@ -19,8 +20,6 @@ export default function MovieList() {
   }, []);
 
   async function dataList() {
-    const dataGenre = await API.serverGeneral();
-    const genres = await dataGenre.genres;
     const data = await API.serverHitsList();
     const hits = await data.results.map(x => {
       return Object.fromEntries(
@@ -50,7 +49,7 @@ export default function MovieList() {
               <Title>{x.title}</Title>
               <TextBox>
                 <p>{x.release_date}</p>
-                <p>{x.vote_average}</p>
+                <Rating r={x.vote_average}>{x.vote_average.toFixed(1)}</Rating>
               </TextBox>
             </ElementsBox>
           </Elements>
