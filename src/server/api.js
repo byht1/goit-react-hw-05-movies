@@ -5,9 +5,9 @@ export const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 export default class Server {
   constructor() {
-    this.name = 'Iron man';
+    this.name = '';
     this.page = 1;
-    this.movieId = '1726';
+    this.movieId = '';
   }
   async serverHitsList() {
     const serverDataURL = `${URL}3/trending/movie/day?api_key=${KEY}&page=${this.page}&language=uk-UA`;

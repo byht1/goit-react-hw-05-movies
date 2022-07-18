@@ -38,8 +38,9 @@ export const Rating = styled.p`
   padding: 3px;
   border: 2px solid;
   border-radius: 50%;
-  border-color: ${props => props.r >= 7.5 && 'green'};
-  border-color: ${props => props.r < 7.5 && props.r >= 5.1 && 'orange'};
-  border-color: ${props => props.r <= 5 && 'red'};
-  border-color: ${props => props.r === 0 && '#fff'};
+  border-color: ${props => props.rating >= 7.5 && 'green'};
+  border-color: ${props =>
+    props.rating < 7.5 && props.rating >= 5.6 && 'orange'};
+  border-color: ${props => props.rating <= 5.5 && 'red'};
+  border-color: ${props => props.rating === 0 && '#fff'};
 `;
