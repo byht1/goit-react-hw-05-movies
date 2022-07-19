@@ -64,8 +64,8 @@ export default class Server {
     }
   }
 
-  async serverGeneral() {
-    const serverDataURL = `${URL}3/genre/movie/list?api_key=${KEY}&language=uk-UA`;
+  async serverResponseUS() {
+    const serverDataURL = `${URL}3/movie/${this.movieId}/reviews?api_key=${KEY}&language=en-US&page=${this.page}`;
     try {
       const server = await axios.get(serverDataURL);
       const data = await server.data;

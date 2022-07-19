@@ -1,6 +1,12 @@
 import { Container } from 'App.styled';
-import React, { useState, useEffect } from 'react';
-import { useLocation, useParams, Link } from 'react-router-dom';
+import React, { useState, useEffect, Suspense } from 'react';
+import {
+  useLocation,
+  useParams,
+  Link,
+  Outlet,
+  useNavigate,
+} from 'react-router-dom';
 import Server, { IMG_URL } from 'server/api';
 import defoltImg from '../../img/defolt-poster.jpg';
 import {
@@ -16,16 +22,31 @@ const API = new Server();
 export default function Movie() {
   const { id } = useParams();
   const [movieCard, setMovieCard] = useState({});
+  const [goBack, setGoBack] = useState(0);
+  const navigate = useNavigate();
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
-  console.log('🚀 ~ backLinkHref', backLinkHref);
+  // console.log('🚀 ~ backLinkHref', backLinkHref);
 
   useEffect(() => {
+    API.movieId = `${id}`;
     serverDate();
   }, []);
 
+  function goBackPage() {
+    if (goBack === 0) {
+      navigate(-1);
+      return;
+    }
+    navigate(-2);
+  }
+
+  // function nav(event) {
+  //   history({ ...backLinkHref, search: 'name=iron' });
+  //   console.log('🚀 ~ history', history);
+  // }
+
   async function serverDate() {
-    API.movieId = `${id}`;
     const data = await API.serverMovie();
     setMovieCard(data);
   }
@@ -41,13 +62,13 @@ export default function Movie() {
 
   return (
     <main>
-      {/* <Button to={backLinkHref}>Назад</Button> */}
-      <Link to={backLinkHref}>назад</Link>
+      {/* <Link to={backLinkHref}>назад</Link> */}
+      <button onClick={goBackPage}>назад</button>
       <Container>
         <ContainerMovie>
           <Img
             src={poster_path ? IMG_URL + poster_path : defoltImg}
-            alt={`постер к фільму ${title}`}
+            alt={`постер до фільму ${title}`}
           />
           <InfoMovie>
             <Title>{title}</Title>
@@ -72,8 +93,23 @@ export default function Movie() {
             <p>
               <TextDecoration>Прощо фільм {title}:</TextDecoration> {overview}
             </p>
+            <ul>
+              <li>
+                <Link to="cast" onClick={() => setGoBack(1)}>
+                  Актори
+                </Link>
+              </li>
+              <li>
+                <Link to="reviews" onClick={() => setGoBack(1)}>
+                  Відгуки
+                </Link>
+              </li>
+            </ul>
           </InfoMovie>
         </ContainerMovie>
+        <Suspense fallback={<div>Loading subpage...</div>}>
+          <Outlet />
+        </Suspense>
       </Container>
     </main>
   );

@@ -1,6 +1,6 @@
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import SeatchList from 'components/SeatchList/SeatchList';
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import Server from 'server/api';
 import Form from 'components/Form/Form';
 
@@ -11,10 +11,14 @@ export default function Search() {
   const [moviesLit, setMoviesLit] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const moviesName = searchParams.get('name') ?? '';
+  const histori = window.location.search.split('=')[1];
 
   useEffect(() => {
-    if (value === '') {
-      API.name = window.location.search.split('=')[1];
+    if (!value && !histori) {
+      return;
+    }
+    if (!value) {
+      API.name = histori;
       serverData();
       return;
     }
@@ -43,10 +47,6 @@ export default function Search() {
     <main>
       <Form submit={onSubmit} value={moviesName} onChang={onChang} />
       <SeatchList list={moviesLit} />
-
-      <Suspense fallback={<div>Loading subpage...</div>}>
-        <Outlet />
-      </Suspense>
     </main>
   );
 }
