@@ -1,5 +1,4 @@
 import { useSearchParams } from 'react-router-dom';
-// import SeatchList from 'components/SeatchList/SeatchList';
 import React, { useState, useEffect } from 'react';
 import { serverSearch } from 'server/api';
 import Form from 'components/Form/Form';
@@ -23,7 +22,7 @@ export default function Search() {
     }
 
     serverData(value);
-  }, [value]);
+  }, [histori, value]);
 
   function onSubmit(event) {
     event.preventDefault();
