@@ -22,7 +22,7 @@ export default function Search() {
     }
 
     serverData(value);
-  }, [value]);
+  }, [histori, value]);
 
   function onSubmit(event) {
     event.preventDefault();
