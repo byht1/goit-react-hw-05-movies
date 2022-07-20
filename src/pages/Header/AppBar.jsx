@@ -1,21 +1,21 @@
 import { Container } from 'App.styled';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header, Link } from './AppBar.styled';
+import { Header, Link, Nav } from './AppBar.styled';
 
 export default function AppBar() {
   return (
     <>
       <Header>
         <Container>
-          <nav>
+          <Nav>
             <Link to="/">Home</Link>
             <Link to="/movies">Movies</Link>
-          </nav>
+          </Nav>
         </Container>
       </Header>
       <Container>
-        <Suspense fallback={<div>Loading subpage...</div>}>
+        <Suspense>
           <Outlet />
         </Suspense>
       </Container>

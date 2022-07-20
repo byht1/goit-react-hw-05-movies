@@ -1,10 +1,15 @@
 import styled from '@emotion/styled';
 
+export const Main = styled.main`
+  padding: 20px 0;
+`;
+
 export const List = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   max-width: 100vw - 45px;
   gap: 15px;
+  margin-top: 20px;
 `;
 
 export const Elements = styled.li`

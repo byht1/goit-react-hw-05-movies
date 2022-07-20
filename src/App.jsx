@@ -1,26 +1,31 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppBar from 'pages/Header/AppBar';
+import { Fon } from 'App.styled';
+import fonImg from './img/fon.jpg';
 
 const createAsyncComponent = path => lazy(() => import(`${path}`));
 
-const MoviesList = createAsyncComponent('./components/Main/MoviesList');
-const Search = createAsyncComponent('./components/Search/Search');
-const Movie = createAsyncComponent('./pages/Movie/Movie');
-const Cast = createAsyncComponent('./components/Cast/Cast.jsx');
-const Reviews = createAsyncComponent('./components/Reviews/Reviews.jsx');
+const MoviesList = createAsyncComponent('./pages/MovieList/MovieList.jsx');
+const Search = createAsyncComponent('./pages/Search/Search.jsx');
+const Movie = createAsyncComponent('./pages/Movie/Movie.jsx');
+const Cast = createAsyncComponent('./pages/Cast/Cast.jsx');
+const Reviews = createAsyncComponent('./pages/Reviews/Reviews.jsx');
 
 export const App = () => {
   return (
-    <Routes>
-      <Route path="/" exact element={<AppBar />}>
-        <Route index element={<MoviesList />} />
-        <Route path="movies" element={<Search />} />
-        <Route path="movies/:id" element={<Movie />}>
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
+    <Fon img={fonImg}>
+      <Routes>
+        <Route path="/" exact element={<AppBar />}>
+          <Route index element={<MoviesList />} />
+          <Route path="movies" element={<Search />} />
+          <Route path="movies/:id" element={<Movie />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<AppBar />} />
         </Route>
-      </Route>
-    </Routes>
+      </Routes>
+    </Fon>
   );
 };

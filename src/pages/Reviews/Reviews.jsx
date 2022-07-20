@@ -1,8 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Server from 'server/api';
-
-const API = new Server();
+import { serverResponse, serverResponseUS } from 'server/api';
+import {
+  Span,
+  ReviewsBox,
+  List,
+  Autor,
+  Elements,
+  Text,
+} from './Reviews.styled';
 
 export default function Reviews() {
   const { id } = useParams();
@@ -10,16 +16,15 @@ export default function Reviews() {
   const [reviewsList, setReviewsList] = useState([]);
 
   useEffect(() => {
-    API.movieId = `${id}`;
     serverData();
   }, []);
 
   async function serverData() {
-    const data = await API.serverResponse();
+    const data = await serverResponse(id);
     const results = await data.results;
 
     if (results.length === 0) {
-      const dataUS = await API.serverResponseUS();
+      const dataUS = await serverResponseUS(id);
       const resultsUS = await dataUS.results;
       if (resultsUS.length === 0) {
         return;
@@ -32,35 +37,33 @@ export default function Reviews() {
   }
 
   return (
-    <div>
+    <ReviewsBox>
       {!language && <p>Вибачне але ми не знайшли відгуків</p>}
       {language && (
-        <p>
+        <Text>
           Вибачте але ми не знайшли відгуків на вашошій рідній мові. Але ми
           знайшли на іншій мові.
-        </p>
+        </Text>
       )}
 
-      <ul>
+      <List>
         {reviewsList.map(({ id, author, content, created_at, url }) => {
           return (
-            <li key={id}>
-              <p>
-                <span>Автор:</span> {author}
-              </p>
-              <p>
-                <span>Відгук:</span> {content}
-              </p>
-              <p>
-                <span>Дата:</span> {created_at}
-              </p>
-              <a href={url}>
-                <span>Посилання на оригінал віднуку:</span> {url}
-              </a>
-            </li>
+            <Elements key={id}>
+              <Autor>{author}</Autor>
+              <Text>
+                <Span>Відгук:</Span> {content}
+              </Text>
+              <Text>
+                <Span>Дата:</Span> {created_at.split('T')[0]}
+              </Text>
+              <Text href={url}>
+                <Span>Посилання на оригінал віднуку:</Span> {url}
+              </Text>
+            </Elements>
           );
         })}
-      </ul>
-    </div>
+      </List>
+    </ReviewsBox>
   );
 }

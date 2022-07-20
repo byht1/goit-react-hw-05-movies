@@ -1,21 +1,21 @@
-// import React, { useState } from 'react';
+import { Input, Button, FormBox } from './Form.styled';
+import { FaSearch } from 'react-icons/fa';
 
 export default function Form({ submit, value, onChang }) {
-  // const [text, setText] = useState('');
-  // function onChange(event) {
-  //     console.log(event.value);
-  //     // body
-  // }
   return (
     <div>
-      <form autoComplete="on" onSubmit={submit}>
-        <input
+      <FormBox autoComplete="off" onSubmit={submit}>
+        <Button type="submit">
+          <FaSearch size={29} />
+        </Button>
+        <Input
           type="text"
+          autoFocus
           value={value}
           name="name"
           onChange={e => onChang(e.target.value)}
         />
-      </form>
+      </FormBox>
     </div>
   );
 }
