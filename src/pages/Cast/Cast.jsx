@@ -9,6 +9,7 @@ export default function Cast() {
   const [castList, setCastList] = useState([]);
   useEffect(() => {
     serverData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function serverData() {
