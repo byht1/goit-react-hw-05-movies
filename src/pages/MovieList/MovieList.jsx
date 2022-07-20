@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { IMG_URL, serverHitsList } from 'server/api';
 import {
   List,
@@ -68,3 +69,7 @@ export default function MovieList({ list }) {
     </section>
   );
 }
+
+MovieList.propTypes = {
+  list: PropTypes.array,
+};

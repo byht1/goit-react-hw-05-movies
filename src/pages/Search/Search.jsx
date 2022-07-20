@@ -22,7 +22,8 @@ export default function Search() {
     }
 
     serverData(value);
-  }, [histori, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   function onSubmit(event) {
     event.preventDefault();

@@ -1,5 +1,6 @@
 import { Input, Button, FormBox } from './Form.styled';
 import { FaSearch } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 
 export default function Form({ submit, value, onChang }) {
   return (
@@ -19,3 +20,9 @@ export default function Form({ submit, value, onChang }) {
     </div>
   );
 }
+
+Form.propTypes = {
+  submit: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  onChang: PropTypes.func.isRequired,
+};
