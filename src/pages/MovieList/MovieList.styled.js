@@ -5,6 +5,7 @@ export const Main = styled.main`
 `;
 
 export const TitleH1 = styled.h1`
+  font-family: 'Orbitron', sans-serif;
   text-align: center;
 `;
 
