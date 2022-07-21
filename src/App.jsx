@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import AppBar from 'pages/Header/AppBar';
 import { Fon } from 'App.styled';
 import fonImg from './img/fon.jpg';
+import { PreLoader } from 'components/PreLoader/PreLoader';
 
 const createAsyncComponent = path => lazy(() => import(`${path}`));
 
@@ -14,18 +15,21 @@ const Reviews = createAsyncComponent('./pages/Reviews/Reviews.jsx');
 
 export const App = () => {
   return (
-    <Fon img={fonImg}>
-      <Routes>
-        <Route path="/" exact element={<AppBar />}>
-          <Route index element={<MoviesList />} />
-          <Route path="movies" element={<Search />} />
-          <Route path="movies/:id" element={<Movie />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
+    <>
+      <PreLoader />
+      <Fon img={fonImg}>
+        <Routes>
+          <Route path="/" exact element={<AppBar />}>
+            <Route index element={<MoviesList />} />
+            <Route path="movies" element={<Search />} />
+            <Route path="movies/:id" element={<Movie />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
+            </Route>
+            <Route path="*" element={<MoviesList />} />
           </Route>
-          <Route path="*" element={<MoviesList />} />
-        </Route>
-      </Routes>
-    </Fon>
+        </Routes>
+      </Fon>
+    </>
   );
 };

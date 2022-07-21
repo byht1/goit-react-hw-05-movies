@@ -9,15 +9,18 @@ import {
   TextBox,
   Title,
   Rating,
+  TitleH1,
 } from './MovieList.styled';
 
 export default function MovieList({ list }) {
   const [movie, setMovie] = useState([]);
+  const [title, setTitle] = useState(true);
   const location = useLocation();
   const url = location.pathname === '/' ? `movies/` : '';
 
   useEffect(() => {
     if (list) {
+      setTitle(false);
       setMovie(list);
       return;
     }
@@ -46,6 +49,8 @@ export default function MovieList({ list }) {
 
   return (
     <section>
+      {title && <TitleH1>Список нових фільмів</TitleH1>}
+
       <List>
         {movie.map(({ id, poster_path, title, release_date, vote_average }) => {
           return (

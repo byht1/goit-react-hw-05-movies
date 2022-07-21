@@ -15,6 +15,7 @@ import {
   LinkA,
   ListLink,
 } from './Movie.styled';
+import { Loader } from './../../components/Loader/Loader';
 
 export default function Movie() {
   const { id } = useParams();
@@ -104,7 +105,7 @@ export default function Movie() {
               </ListLink>
             </InfoMovie>
           </ContainerMovie>
-          <Suspense fallback={<div>Loading subpage...</div>}>
+          <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
         </Container>

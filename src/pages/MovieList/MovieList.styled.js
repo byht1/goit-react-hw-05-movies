@@ -4,6 +4,10 @@ export const Main = styled.main`
   padding: 20px 0;
 `;
 
+export const TitleH1 = styled.h1`
+  text-align: center;
+`;
+
 export const List = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -48,4 +52,10 @@ export const Rating = styled.p`
     props.rating < 7.5 && props.rating >= 5.6 && 'orange'};
   border-color: ${props => props.rating <= 5.5 && 'red'};
   border-color: ${props => props.rating === 0 && '#fff'};
+`;
+
+export const TextError = styled.p`
+  margin-top: 20px;
+  font-size: 20px;
+  text-align: center;
 `;
