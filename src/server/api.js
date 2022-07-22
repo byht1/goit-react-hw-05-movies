@@ -1,4 +1,5 @@
-const axios = require('axios').default;
+import axios from 'axios';
+// const axios = require('axios').default;
 const KEY = '8478375b0b2eb45c66ac10717e1ab9a2';
 const URL = 'https://api.themoviedb.org/';
 export const IMG_URL = 'https://image.tmdb.org/t/p/w500';
