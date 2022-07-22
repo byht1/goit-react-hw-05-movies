@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgoit_react_hw_05_movies=self.webpackChunkgoit_react_hw_05_movies||[]).push([[999],{999:function(e,t,a){e.exports=a.p+"static/media/anonim.70097a47e39ee095a4ed.jpg"}}]);

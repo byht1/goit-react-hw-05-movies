@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgoit_react_hw_05_movies=self.webpackChunkgoit_react_hw_05_movies||[]).push([[650],{3650:function(e,t,s){e.exports=s.p+"static/media/defolt-poster.169289f2500b13513ad2.jpg"}}]);
