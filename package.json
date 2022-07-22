@@ -2,7 +2,7 @@
   "name": "goit-react-hw-05-movies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kaleidoscopic-lamington-e06e06.netlify.app",
+  "homepage": "https://goitacademy.github.io/goit-react-hw-05-movies/",
   "dependencies": {
     "@emotion/css": "^11.9.0",
     "@emotion/react": "^11.9.3",
