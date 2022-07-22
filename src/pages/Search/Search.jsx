@@ -16,18 +16,6 @@ export default function Search() {
   const histori = window.location.search.split('=')[1];
 
   useEffect(() => {
-    async function serverData(name) {
-      setError(false);
-      setLoader(true);
-      const data = await serverSearch(name);
-      const results = await data.results;
-      setMoviesList(results);
-      if (!results.length) {
-        setError(true);
-      }
-      setLoader(false);
-    }
-
     if (!value && !histori) {
       return;
     }
@@ -37,6 +25,7 @@ export default function Search() {
     }
 
     serverData(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   function onSubmit(event) {
@@ -47,6 +36,18 @@ export default function Search() {
   function onChang(name) {
     const nextParams = name !== '' ? { name } : {};
     setSearchParams(nextParams);
+  }
+
+  async function serverData(name) {
+    setError(false);
+    setLoader(true);
+    const data = await serverSearch(name);
+    const results = await data.results;
+    setMoviesList(results);
+    if (!results.length) {
+      setError(true);
+    }
+    setLoader(false);
   }
 
   return (
