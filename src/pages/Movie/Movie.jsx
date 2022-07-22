@@ -24,18 +24,17 @@ export default function Movie() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    async function serverDate() {
+      const data = await serverMovie(id);
+      setMovieCard(data);
+    }
     serverDate();
-  }, []);
+  }, [id]);
 
   function goBackPage() {
     navigate(-goBack);
     setGoBack(1);
     return;
-  }
-
-  async function serverDate() {
-    const data = await serverMovie(id);
-    setMovieCard(data);
   }
 
   const {
