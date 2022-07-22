@@ -16,24 +16,26 @@ export default function Reviews() {
   const [reviewsList, setReviewsList] = useState([]);
 
   useEffect(() => {
-    async function serverData() {
-      const data = await serverResponse(id);
-      const results = await data.results;
+    serverData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-      if (results.length === 0) {
-        const dataUS = await serverResponseUS(id);
-        const resultsUS = await dataUS.results;
-        if (resultsUS.length === 0) {
-          return;
-        }
-        setLanguage(true);
-        setReviewsList(resultsUS);
+  async function serverData() {
+    const data = await serverResponse(id);
+    const results = await data.results;
+
+    if (results.length === 0) {
+      const dataUS = await serverResponseUS(id);
+      const resultsUS = await dataUS.results;
+      if (resultsUS.length === 0) {
         return;
       }
-      setReviewsList(results);
+      setLanguage(true);
+      setReviewsList(resultsUS);
+      return;
     }
-    serverData();
-  }, [id]);
+    setReviewsList(results);
+  }
 
   return (
     <ReviewsBox>
