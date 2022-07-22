@@ -48,6 +48,7 @@ export default function Search() {
       setError(true);
     }
     setLoader(false);
+    setLoader(false);
   }
 
   return (
