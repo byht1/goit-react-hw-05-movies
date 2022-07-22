@@ -25,7 +25,6 @@ export default function Movie() {
 
   useEffect(() => {
     serverDate();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function goBackPage() {

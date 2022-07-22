@@ -17,7 +17,6 @@ export default function Reviews() {
 
   useEffect(() => {
     serverData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function serverData() {
